@@ -2,7 +2,7 @@
 version : 0.2
 
 phases:
-  pre-build:
+  pre_build:
     commands:
       - REPOSITORY_URI=261786166738.dkr.ecr.us-east-1.amazonaws.com/chat-app-repo
       - $(aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 261786166738.dkr.ecr.us-east-1.amazonaws.com)
