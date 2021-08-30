@@ -1,0 +1,13 @@
+# This file is used by code build to decide how to build the application
+version : 0.2
+
+phases:
+  pre-build:
+    commands:
+      - REPOSITORY_URI=261786166738.dkr.ecr.us-east-1.amazonaws.com/chat-app-repo
+      - $(aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 261786166738.dkr.ecr.us-east-1.amazonaws.com)
+  build:
+    commands:
+      - docker build -t chat-app-repo .
+      - docker tag chat-app-repo:latest 261786166738.dkr.ecr.us-east-1.amazonaws.com/chat-app-repo:latest
+      - docker push 261786166738.dkr.ecr.us-east-1.amazonaws.com/chat-app-repo:latest
